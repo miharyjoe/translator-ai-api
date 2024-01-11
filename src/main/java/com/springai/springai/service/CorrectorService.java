@@ -16,6 +16,23 @@ import java.util.Map;
 @AllArgsConstructor
 public class CorrectorService {
   private final ChatClient chatClient;
+
+  /**
+   * Generates a response to correct spelling and grammar mistakes in the given sentences.
+   * This method utilizes an AI assistant to provide corrections in the specified language.
+   *
+   * @param language   The language in which the correction response should be provided.
+   * @param sentences  The sentences containing spelling and grammar mistakes to be corrected.
+   * @return A Generation object representing the AI-generated correction response.
+   *
+   * Example usage:
+   * <pre>
+   * Generation correctionResponse = getCorrector("English", "This is an example sentence with mistkes.");
+   * </pre>
+   *
+   * The AI assistant will correct the mistakes in the provided sentences and generate a response.
+   * The response can be accessed through the {@link Generation} object.
+   */
   public Generation getCorrector(String language, String sentences){
 
     String systemPrompt = """

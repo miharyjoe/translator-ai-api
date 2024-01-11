@@ -17,6 +17,23 @@ import java.util.Map;
 public class TranslatorService {
 
   private final ChatClient chatClient;
+
+  /**
+   * Generates a response to translate given text into a specified language.
+   * This method utilizes an AI assistant to provide translations in the specified language.
+   *
+   * @param translate  The target language into which the text should be translated.
+   * @param sentences  The sentences to be translated into the specified language.
+   * @return A Generation object representing the AI-generated translation response.
+   *
+   * Example usage:
+   * <pre>
+   * Generation translationResponse = getTranslator("French", "Hello, how are you?");
+   * </pre>
+   *
+   * The AI assistant will translate the provided sentences into the specified language
+   * and generate a response. The response can be accessed through the {@link Generation} object.
+   */
   public Generation getTranslator(String translate, String sentences){
     String systemPrompt = """
                 You are a helpful AI assistant that helps people translate given text to %s.
