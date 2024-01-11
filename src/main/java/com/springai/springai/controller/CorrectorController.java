@@ -18,11 +18,13 @@ public class CorrectorController {
   @Autowired
   ChatClient chatClient;
   @GetMapping("/corrector")
-  public Generation translator(@RequestBody String sentences){
+  public Generation translator(@RequestParam(required = true, defaultValue = "english") String language, @RequestBody String sentences){
+
     String systemPrompt = """
                 You are a helpful AI assistant that helps people Correct the spelling and grammar mistakes.
                 You should reply to the user's request in the style of a professional.
-                """;
+                You should give your answer in %s.
+                """.formatted(language);
     SystemPromptTemplate systemPromptTemplate = new SystemPromptTemplate(systemPrompt);
     Message systemMessage = systemPromptTemplate.createMessage();
     PromptTemplate promptTemplate = new PromptTemplate("Correct the spelling and grammar mistakes in the given  sentences : {sentences}");
