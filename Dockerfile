@@ -2,6 +2,8 @@
 FROM maven:3.8.4 AS build
 WORKDIR /app
 COPY . /app
+ARG OPENAI_API_KEY
+ENV OPENAI_API_KEY=$OPENAI_API_KEY
 RUN mvn clean install
 
 # Use the official OpenJDK 17 base image
@@ -15,9 +17,6 @@ COPY --from=build /app/target/springai-0.0.1-SNAPSHOT.jar /app/springai-0.0.1-SN
 
 # Expose the port that your Spring Boot application will run on
 EXPOSE 8080
-
-# Set the OpenAI API key as an environment variable
-ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
 # Command to run your application
 CMD ["java", "-jar", "/app/springai-0.0.1-SNAPSHOT.jar"]
