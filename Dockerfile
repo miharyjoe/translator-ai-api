@@ -20,4 +20,4 @@ EXPOSE 8080
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
 # Command to run your application
-CMD ["java", "-jar", "/app/SpringaiApplication.jar"]
+CMD ["java", "-jar", "/app/springai-0.0.1-SNAPSHOT.jar"]
