@@ -1,7 +1,5 @@
-LABEL authors="miharyjoel"
-
 # Use the official OpenJDK 17 base image
-FROM eclipse-temurin:17-jdk-focal
+FROM openjdk:17
 
 # Set the working directory inside the container
 WORKDIR /app
