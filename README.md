@@ -35,7 +35,7 @@ This Spring Boot application provides endpoints for AI-assisted language process
     ```bash
     https://translator-corrector-ai.onrender.com
     ```
-#### To do the translation:
+#### Translator-endpoint:
     ```bash
     GET https://translator-corrector-ai.onrender.com/ai/translator?translate=french
     ```
@@ -46,7 +46,7 @@ This Spring Boot application provides endpoints for AI-assisted language process
 * in request body: sentences (required): The sentences to be translated into the specified language.
 
 
-#### To do the Corrector:
+#### Corrector-endpoint:
     ```bash
     GET https://translator-corrector-ai.onrender.com/ai/corrector?language=english
     ```
@@ -57,7 +57,7 @@ This Spring Boot application provides endpoints for AI-assisted language process
 * In request param: language (required): The language in which the correction response should be provided. (Default value: "english" if not specified)
 * in request body: sentences (required): The sentences containing spelling and grammar mistakes to be corrected.
 
-#### Health Check Endpoint
+#### Health-check-endpoint
 * Endpoint: /ping
 
 * Method: GET
