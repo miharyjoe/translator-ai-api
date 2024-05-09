@@ -3,10 +3,10 @@ package com.springai.springai.service;
 import lombok.AllArgsConstructor;
 import org.springframework.ai.chat.ChatClient;
 import org.springframework.ai.chat.Generation;
-import org.springframework.ai.prompt.Prompt;
-import org.springframework.ai.prompt.PromptTemplate;
-import org.springframework.ai.prompt.SystemPromptTemplate;
-import org.springframework.ai.prompt.messages.Message;
+import org.springframework.ai.chat.messages.Message;
+import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class TranslatorService {
    * The AI assistant will translate the provided sentences into the specified language
    * and generate a response. The response can be accessed through the {@link Generation} object.
    */
-  public Generation getTranslator(String translate, String sentences){
+  public String getTranslator(String translate, String sentences){
     String systemPrompt = """
                 You are a helpful AI assistant that helps people translate given text to %s.
                 You should reply to the user's request in the style of a professional.
@@ -44,6 +44,6 @@ public class TranslatorService {
     PromptTemplate promptTemplate = new PromptTemplate("translate  into {translate} the given  sentences : {sentences}");
     Message userMessage = promptTemplate.createMessage(Map.of("translate", translate, "sentences", sentences));
     Prompt prompt = new Prompt(List.of(systemMessage, userMessage));
-    return chatClient.generate(prompt).getGeneration();
+    return chatClient.call(prompt).getResult().getOutput().getContent();
   }
 }

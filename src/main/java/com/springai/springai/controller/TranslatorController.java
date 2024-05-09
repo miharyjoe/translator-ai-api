@@ -31,7 +31,7 @@ public class TranslatorController {
    * and generate a response. The response can be accessed through the {@link Generation} object.
    */
     @GetMapping("/translator")
-    public Generation translator(@RequestParam(required = true) String translate, @RequestBody String sentences){
+    public String translator(@RequestParam(required = true) String translate, @RequestBody String sentences){
         return translateService.getTranslator(translate,sentences);
     }
 }
