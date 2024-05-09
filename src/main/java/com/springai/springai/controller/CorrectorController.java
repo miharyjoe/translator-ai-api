@@ -30,7 +30,7 @@ public class CorrectorController {
    * The response can be accessed through the {@link Generation} object.
    */
   @GetMapping("/corrector")
-  public Generation translator(@RequestParam(required = true, defaultValue = "english") String language, @RequestBody String sentences){
+  public String translator(@RequestParam(required = true, defaultValue = "english") String language, @RequestBody String sentences){
     return correctorService.getCorrector(language, sentences);
   }
 }

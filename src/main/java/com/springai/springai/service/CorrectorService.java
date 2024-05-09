@@ -3,10 +3,10 @@ package com.springai.springai.service;
 import lombok.AllArgsConstructor;
 import org.springframework.ai.chat.ChatClient;
 import org.springframework.ai.chat.Generation;
-import org.springframework.ai.prompt.Prompt;
-import org.springframework.ai.prompt.PromptTemplate;
-import org.springframework.ai.prompt.SystemPromptTemplate;
-import org.springframework.ai.prompt.messages.Message;
+import org.springframework.ai.chat.messages.Message;
+import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class CorrectorService {
    * The AI assistant will correct the mistakes in the provided sentences and generate a response.
    * The response can be accessed through the {@link Generation} object.
    */
-  public Generation getCorrector(String language, String sentences){
+  public String getCorrector(String language, String sentences){
 
     String systemPrompt = """
                 You are a helpful AI assistant that helps people Correct the spelling and grammar mistakes.
@@ -45,6 +45,6 @@ public class CorrectorService {
     PromptTemplate promptTemplate = new PromptTemplate("Correct the spelling and grammar mistakes in the given  sentences : {sentences}");
     Message userMessage = promptTemplate.createMessage(Map.of("sentences", sentences));
     Prompt prompt = new Prompt(List.of(systemMessage, userMessage));
-    return chatClient.generate(prompt).getGeneration();
+    return chatClient.call(prompt).getResult().getOutput().getContent();
   }
 }
